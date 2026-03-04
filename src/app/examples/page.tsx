@@ -13,6 +13,7 @@ const examples = [
   {
     title: "Junior Developer",
     context: "Recent CS graduate looking for their first role",
+    timeInvested: "~6 hours over one weekend",
     before: [
       "Bio: empty",
       "Avatar: default GitHub identicon",
@@ -37,10 +38,12 @@ const examples = [
       "Added screenshots and demo GIFs",
       "Started contributing to an open-source project weekly",
     ],
+    result: "Received 3 recruiter messages on LinkedIn within 2 weeks of updating the profile.",
   },
   {
     title: "Career Changer",
     context: "Marketing professional transitioning to frontend development",
+    timeInvested: "~8 hours over 2 weeks",
     before: [
       "Bio: 'Learning to code'",
       "Avatar: vacation photo",
@@ -65,10 +68,12 @@ const examples = [
       "Started making small contributions to a popular React component library",
       "Added LinkedIn and portfolio links to profile",
     ],
+    result: "Landed an interview at a startup that valued the marketing + dev combination.",
   },
   {
     title: "Data Science Student",
     context: "Final year student applying for data science internships",
+    timeInvested: "~5 hours over 3 days",
     before: [
       "Bio: 'Student'",
       "Avatar: anime character",
@@ -93,6 +98,7 @@ const examples = [
       "Linked Kaggle profile and added certifications",
       "Made school assignments private, kept only best projects",
     ],
+    result: "Got an internship offer after the interviewer mentioned being impressed by the GitHub profile.",
   },
 ];
 
@@ -103,18 +109,24 @@ export default function ExamplesPage() {
         <h1 className="text-3xl font-bold">Before/After Examples</h1>
         <p className="mt-3 text-muted-foreground text-lg">
           Real-world examples of how small changes can transform a GitHub
-          profile from forgettable to hireable.
+          profile from forgettable to hireable. Each example includes the time
+          invested and the outcome.
         </p>
       </div>
 
       <div className="space-y-12">
         {examples.map((example, i) => (
           <div key={i}>
-            <div className="mb-4">
-              <h2 className="text-xl font-bold">{example.title}</h2>
-              <p className="text-sm text-muted-foreground">
-                {example.context}
-              </p>
+            <div className="mb-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+              <div>
+                <h2 className="text-xl font-bold">{example.title}</h2>
+                <p className="text-sm text-muted-foreground">
+                  {example.context}
+                </p>
+              </div>
+              <Badge variant="outline" className="text-xs shrink-0 w-fit">
+                {example.timeInvested}
+              </Badge>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
@@ -175,6 +187,14 @@ export default function ExamplesPage() {
                     </li>
                   ))}
                 </ul>
+                {example.result && (
+                  <div className="mt-4 pt-4 border-t border-border">
+                    <p className="text-sm text-emerald">
+                      <span className="font-medium">Result:</span>{" "}
+                      {example.result}
+                    </p>
+                  </div>
+                )}
               </CardContent>
             </Card>
 
@@ -185,12 +205,66 @@ export default function ExamplesPage() {
         ))}
       </div>
 
+      {/* Real Project Example */}
+      <div className="mt-16">
+        <hr className="border-border mb-12" />
+        <div className="mb-6">
+          <Badge variant="secondary" className="mb-3">
+            Live Example
+          </Badge>
+          <h2 className="text-xl font-bold">Real-World Project: GitReady</h2>
+          <p className="text-sm text-muted-foreground mt-2">
+            This site itself is an example of a well-structured GitHub project.
+            See how the repository follows every best practice we recommend.
+          </p>
+        </div>
+
+        <Card>
+          <CardContent className="p-5">
+            <div className="space-y-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {[
+                  { label: "Descriptive name", detail: '"gitready" tells you exactly what the project does' },
+                  { label: "Professional README", detail: "Badges, description, features, tech stack, getting started, project structure" },
+                  { label: "Clean codebase", detail: "Well-organized src/ with logical directories: app/, components/, lib/" },
+                  { label: "Meaningful commits", detail: "Each commit describes what changed and why" },
+                  { label: "Tech stack badges", detail: "Next.js, TypeScript, Tailwind CSS — instantly scannable" },
+                  { label: "Working setup instructions", detail: "git clone → npm install → npm run dev — tested and verified" },
+                ].map((item) => (
+                  <div key={item.label} className="flex gap-2">
+                    <span className="text-emerald shrink-0">+</span>
+                    <div>
+                      <p className="text-sm font-medium">{item.label}</p>
+                      <p className="text-xs text-muted-foreground">{item.detail}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <div className="pt-4 border-t border-border flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+                <p className="text-sm text-muted-foreground">
+                  View the source code to see all these practices in action.
+                </p>
+                <Button asChild variant="outline" size="sm" className="shrink-0">
+                  <a
+                    href="https://github.com/nis1993tx/gitready"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    View on GitHub
+                  </a>
+                </Button>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+
       {/* Bottom CTA */}
       <div className="mt-16 text-center">
         <h2 className="text-2xl font-bold mb-4">Your Turn</h2>
         <p className="text-muted-foreground mb-6">
           Run the checklist to see where your profile stands, then use our
-          templates to make improvements.
+          templates to make improvements. Most people finish in 2-3 hours.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Button asChild size="lg">

@@ -96,4 +96,4 @@ MIT
 
 ## Author
 
-**Nisan Ital** — [LinkedIn](https://www.linkedin.com/in/nisanital/)
+**Nisan Ital** — [LinkedIn](https://www.linkedin.com/in/nisan-ital/)

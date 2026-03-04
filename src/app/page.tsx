@@ -11,6 +11,7 @@ const features = [
     href: "/templates",
     icon: "M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z",
     badge: "Free",
+    time: "15 min to customize",
   },
   {
     title: "Repo README Templates",
@@ -19,6 +20,7 @@ const features = [
     href: "/repo-templates",
     icon: "M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z",
     badge: "Free",
+    time: "10 min per project",
   },
   {
     title: "Profile Checklist",
@@ -27,6 +29,7 @@ const features = [
     href: "/checklist",
     icon: "M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4",
     badge: "Interactive",
+    time: "30 min audit",
   },
   {
     title: "Complete Guide",
@@ -35,6 +38,27 @@ const features = [
     href: "/guide",
     icon: "M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253",
     badge: "Guide",
+    time: "20 min read",
+  },
+];
+
+const quickTips = [
+  {
+    tip: "Write a clear bio",
+    detail: "Include your role, tech stack, and location. Recruiters scan bios in 3 seconds.",
+    example: '"Full-stack developer | React, Node.js, PostgreSQL | Open to work"',
+  },
+  {
+    tip: "Pin your 6 best repos",
+    detail: "Quality over quantity. Only show polished projects with READMEs.",
+  },
+  {
+    tip: "Add a profile README",
+    detail: "Create a repo named after your username. Its README appears on your profile page.",
+  },
+  {
+    tip: "Write descriptive commit messages",
+    detail: '"Add user authentication with JWT" tells a story. "fix stuff" does not.',
   },
 ];
 
@@ -54,17 +78,49 @@ export default function Home() {
               <span className="text-primary">Job-Ready</span>
             </h1>
             <p className="mt-6 text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto">
-              Free templates, guides, and tools to help students and job seekers
-              build a GitHub profile that gets them hired.
+              Most GitHub profiles get overlooked because they&apos;re incomplete
+              and poorly presented. Recruiters spend 30 seconds scanning &mdash;
+              GitReady helps you make every second count.
             </p>
             <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
               <Button asChild size="lg" className="text-base">
-                <Link href="/templates">Browse Templates</Link>
+                <Link href="/templates">Get Started Free</Link>
               </Button>
               <Button asChild variant="outline" size="lg" className="text-base">
                 <Link href="/checklist">Audit Your Profile</Link>
               </Button>
             </div>
+            <p className="mt-4 text-xs text-muted-foreground">
+              Built by a former Talent Acquisition Director who reviewed thousands of developer profiles.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Who is this for */}
+      <section className="border-y border-border bg-muted/30">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 py-16">
+          <div className="text-center mb-10">
+            <h2 className="text-2xl font-bold">Who Is This For?</h2>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              { emoji: "🎓", title: "Students", desc: "CS students and bootcamp grads who can code but can't land interviews because their GitHub looks empty" },
+              { emoji: "🔄", title: "Career Changers", desc: "Professionals switching to tech who need to prove their skills without years of experience" },
+              { emoji: "💼", title: "Job Seekers", desc: "Developers losing out to candidates with polished profiles — even when they write better code" },
+              { emoji: "🚀", title: "Junior Devs", desc: "Early-career developers who want recruiters to find them instead of the other way around" },
+            ].map((persona) => (
+              <div key={persona.title} className="text-center">
+                <div className="text-3xl mb-3">{persona.emoji}</div>
+                <h3 className="font-semibold text-sm">{persona.title}</h3>
+                <p className="text-xs text-muted-foreground mt-1">{persona.desc}</p>
+              </div>
+            ))}
+          </div>
+          <div className="text-center mt-8">
+            <Button asChild variant="outline" size="sm">
+              <Link href="/checklist">See Where You Stand</Link>
+            </Button>
           </div>
         </div>
       </section>
@@ -74,7 +130,8 @@ export default function Home() {
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold">Everything You Need</h2>
           <p className="mt-3 text-muted-foreground text-lg">
-            All the resources to transform your GitHub profile.
+            All the resources to transform your GitHub profile. Most people
+            finish in 2-3 hours.
           </p>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -109,6 +166,9 @@ export default function Home() {
                       <p className="mt-2 text-sm text-muted-foreground">
                         {feature.description}
                       </p>
+                      <p className="mt-2 text-xs text-primary/70">
+                        {feature.time}
+                      </p>
                     </div>
                   </div>
                 </CardContent>
@@ -118,8 +178,45 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Quick Tips */}
+      <section className="border-y border-border bg-muted/30">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 py-20">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold">Quick Wins in 5 Minutes</h2>
+            <p className="mt-3 text-muted-foreground text-lg">
+              Don&apos;t have time for the full guide? Start with these high-impact
+              changes.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            {quickTips.map((item, i) => (
+              <Card key={i}>
+                <CardContent className="p-5">
+                  <div className="flex gap-3">
+                    <div className="flex items-center justify-center h-7 w-7 rounded-full bg-primary/10 text-primary text-sm font-bold shrink-0">
+                      {i + 1}
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-sm">{item.tip}</h3>
+                      <p className="text-sm text-muted-foreground mt-1">
+                        {item.detail}
+                      </p>
+                      {item.example && (
+                        <p className="mt-2 text-xs font-mono bg-muted rounded px-2 py-1 text-emerald">
+                          {item.example}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Before/After */}
-      <section className="bg-muted/50 border-y border-border">
+      <section>
         <div className="mx-auto max-w-6xl px-4 sm:px-6 py-20">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold">Before vs After</h2>
@@ -198,21 +295,104 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CTA */}
+      {/* Real World Example */}
+      <section className="border-y border-border bg-muted/30">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 py-20">
+          <div className="text-center mb-10">
+            <Badge variant="secondary" className="mb-4">
+              Live Example
+            </Badge>
+            <h2 className="text-3xl font-bold">See a Real GitHub Project</h2>
+            <p className="mt-3 text-muted-foreground text-lg max-w-2xl mx-auto">
+              GitReady itself is an example of a well-structured GitHub project.
+              Check out the actual repo to see best practices in action.
+            </p>
+          </div>
+          <Card>
+            <CardContent className="p-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                {[
+                  { label: "Professional README", desc: "Clear description, badges, getting started instructions, project structure" },
+                  { label: "Clean Architecture", desc: "Well-organized src/ directory with logical file grouping and naming" },
+                  { label: "Descriptive Naming", desc: 'Repo named "gitready" — short, memorable, and describes what it does' },
+                  { label: "Active Maintenance", desc: "Regular commits, meaningful messages, consistent contribution history" },
+                ].map((item) => (
+                  <div key={item.label}>
+                    <h3 className="font-semibold text-sm text-emerald">{item.label}</h3>
+                    <p className="text-xs text-muted-foreground mt-1">{item.desc}</p>
+                  </div>
+                ))}
+              </div>
+              <div className="mt-6 pt-6 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-4">
+                <p className="text-sm text-muted-foreground">
+                  Built with Next.js, TypeScript, and Tailwind CSS &mdash; deployed on Vercel.
+                </p>
+                <Button asChild variant="outline" size="sm">
+                  <a
+                    href="https://github.com/nis1993tx/gitready"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    View on GitHub
+                  </a>
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
+
+      {/* FAQ */}
       <section className="mx-auto max-w-6xl px-4 sm:px-6 py-20">
-        <div className="text-center max-w-2xl mx-auto">
-          <h2 className="text-3xl font-bold">Ready to Level Up?</h2>
-          <p className="mt-4 text-muted-foreground text-lg">
-            Start with our templates or run a full checklist audit on your
-            profile. Everything is free.
-          </p>
-          <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
-            <Button asChild size="lg">
-              <Link href="/templates">Get Templates</Link>
-            </Button>
-            <Button asChild variant="outline" size="lg">
-              <Link href="/guide">Read the Guide</Link>
-            </Button>
+        <div className="text-center mb-12">
+          <h2 className="text-3xl font-bold">Common Questions</h2>
+        </div>
+        <div className="max-w-3xl mx-auto space-y-6">
+          {[
+            {
+              q: "Do I need coding experience to benefit from this?",
+              a: "No. If you have a GitHub account with even a few projects, GitReady will help you present them better. The templates and checklist work for beginners and experienced developers alike.",
+            },
+            {
+              q: "How long does it take to improve my profile?",
+              a: "Most people finish in 2-3 hours. Start with the checklist (30 min) to identify gaps, then use templates (15 min each) to fill them. You can spread it out over a few days.",
+            },
+            {
+              q: "Will this guarantee I get hired?",
+              a: "No tool can guarantee a job, but a polished GitHub profile significantly increases your chances. Recruiters often check GitHub before scheduling interviews — a strong profile can be the difference between getting contacted or being passed over.",
+            },
+            {
+              q: "Should I keep my old learning projects?",
+              a: "Archive or make private anything that doesn't represent your current skill level. Quality over quantity. 5 polished projects is better than 50 incomplete ones.",
+            },
+          ].map((item) => (
+            <Card key={item.q}>
+              <CardContent className="p-5">
+                <h3 className="font-semibold text-sm">{item.q}</h3>
+                <p className="text-sm text-muted-foreground mt-2">{item.a}</p>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="border-t border-border bg-muted/30">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 py-20">
+          <div className="text-center max-w-2xl mx-auto">
+            <h2 className="text-3xl font-bold">Ready to Level Up?</h2>
+            <p className="mt-4 text-muted-foreground text-lg">
+              Start with the checklist to see where you stand, then grab
+              templates to fill the gaps. Everything is free, forever.
+            </p>
+            <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
+              <Button asChild size="lg">
+                <Link href="/checklist">Run the Checklist</Link>
+              </Button>
+              <Button asChild variant="outline" size="lg">
+                <Link href="/templates">Browse Templates</Link>
+              </Button>
+            </div>
           </div>
         </div>
       </section>

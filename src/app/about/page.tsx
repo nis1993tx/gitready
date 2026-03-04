@@ -19,17 +19,56 @@ export default function AboutPage() {
             create GitHub profiles that actually get them hired.
           </p>
           <p className="text-muted-foreground mt-4">
-            As someone who has reviewed thousands of profiles during years of
-            tech recruiting, I saw the same mistakes over and over. Great
-            developers with terrible GitHub profiles, losing opportunities
-            because their work wasn&apos;t presented well.
+            After reviewing thousands of developer profiles during years of
+            tech recruiting, I kept seeing the same pattern: talented people
+            with terrible GitHub profiles, losing opportunities because their
+            work wasn&apos;t presented well.
           </p>
           <p className="text-muted-foreground mt-4">
-            GitReady gives you everything you need to fix that: templates,
-            guides, checklists, and real examples. All free, no signup
-            required.
+            A great developer with a poor GitHub profile will lose to an
+            average developer with a polished one. That&apos;s the reality of
+            how recruiting works today. GitReady exists to fix that gap.
+          </p>
+          <p className="text-muted-foreground mt-4">
+            Everything here is free, no signup required. Templates, guides,
+            checklists, and real examples &mdash; everything you need in one
+            place.
           </p>
         </div>
+
+        {/* Why GitHub Matters */}
+        <Card>
+          <CardContent className="p-6">
+            <h2 className="text-xl font-bold mb-4">Why GitHub Matters for Your Career</h2>
+            <div className="space-y-3 text-sm text-muted-foreground">
+              <p>
+                GitHub has become the default portfolio for developers. Whether
+                you&apos;re a student, career changer, or experienced engineer,
+                your GitHub profile is often checked before you even get an
+                interview.
+              </p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-4">
+                {[
+                  { stat: "Recruiters check GitHub", detail: "Most tech recruiters review candidates' GitHub profiles as part of screening" },
+                  { stat: "Code speaks louder than resumes", detail: "Your actual work is more convincing than bullet points on a PDF" },
+                  { stat: "First impressions matter", detail: "A recruiter spends ~30 seconds scanning a profile before deciding" },
+                  { stat: "It shows how you work", detail: "Commit history, documentation, and code quality reveal your work habits" },
+                ].map((item) => (
+                  <div key={item.stat} className="rounded-md bg-muted p-3">
+                    <p className="font-medium text-foreground text-xs">{item.stat}</p>
+                    <p className="text-xs mt-1">{item.detail}</p>
+                  </div>
+                ))}
+              </div>
+              <p className="mt-3">
+                The good news: improving your GitHub profile is one of the
+                highest-ROI activities for job seekers. A few hours of work can
+                make a lasting impression on every recruiter who views your
+                profile.
+              </p>
+            </div>
+          </CardContent>
+        </Card>
 
         <Card>
           <CardContent className="p-6">
@@ -44,14 +83,37 @@ export default function AboutPage() {
               helping professionals use tools like Claude and ChatGPT to
               boost their productivity and advance their careers.
             </p>
+            <p className="text-muted-foreground text-sm mt-3">
+              GitReady was built using AI-assisted development as a
+              demonstration of what&apos;s possible when career expertise meets
+              modern technology. The{" "}
+              <a
+                href="https://github.com/nis1993tx/gitready"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-primary hover:underline"
+              >
+                source code is open on GitHub
+              </a>{" "}
+              &mdash; and serves as a real-world example of a well-structured project.
+            </p>
             <div className="mt-4 flex gap-3">
               <Button asChild size="sm" variant="outline">
                 <a
-                  href="https://www.linkedin.com/in/nisanital/"
+                  href="https://www.linkedin.com/in/nisan-ital/"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
                   LinkedIn
+                </a>
+              </Button>
+              <Button asChild size="sm" variant="outline">
+                <a
+                  href="https://github.com/nis1993tx/gitready"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  GitHub
                 </a>
               </Button>
             </div>
